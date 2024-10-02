@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, useWindowDimensions } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming, Easing } from 'react-native-reanimated';
-
+import { ThemeContext } from '@/context/themeContext';
+import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText';
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
 export default function Component() {
   const { width } = useWindowDimensions();
   const isSmallScreen = width < 768;
-
+const tema = useContext(ThemeContext).theme;
   const imageScale = useSharedValue(0.8);
   const textTranslateY = useSharedValue(50);
   const buttonScale = useSharedValue(1);
@@ -39,23 +41,23 @@ export default function Component() {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: '#f0f0f0' }}>
-      <View style={{ flexDirection: isSmallScreen ? 'column' : 'row', padding: 20, alignItems: 'center' }}>
+    <ScrollView style={{ backgroundColor: tema === 'dark' ? '#151718' : 'white' }}>
+      <ThemedView style={{ flexDirection: isSmallScreen ? 'column' : 'row', padding: 20, alignItems: 'center' }}>
         <Animated.View style={[
           { 
             flex: 1,
             padding: 20,
-            backgroundColor: '#f0f0f0',
+            alignItems: 'center',
             borderRadius: 20,
             marginRight: isSmallScreen ? 0 : 20,
             marginBottom: isSmallScreen ? 20 : 0,
           },
           textStyle
         ]}>
-          <Text style={{ fontSize: 12, marginBottom: 10, color: '#666' }}>WEB DEVELOPMENT / MARKETING</Text>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>I can help your business to</Text>
+          <Text style={{ fontSize: 12, marginBottom: 10, fontWeight: 'bold',backgroundColor:"black" ,color:"white", borderRadius:10,width:"50%"}}>WEB DEVELOPMENT / MARKETING</Text>
+          <ThemedText style={{ fontSize: 24, marginBottom: 10, }}>I can help your business to</ThemedText>
           <Text style={{ fontSize: 32, fontWeight: 'bold', color: '#8A2BE2', marginBottom: 20 }}>Get online and grow fast</Text>
-          <View style={{ flexDirection: isSmallScreen ? 'column' : 'row', marginBottom: 20 }}>
+          <View style={{width:300, flexDirection: isSmallScreen ? 'column' : 'row', marginBottom: 20 }}>
             {['Resume', 'Projects'].map((text, index) => (
               <AnimatedTouchableOpacity 
                 key={text}
@@ -79,9 +81,9 @@ export default function Component() {
               </AnimatedTouchableOpacity>
             ))}
           </View>
-          <Text style={{ fontSize: 16, color: '#666' }}>
+          <ThemedText style={{ fontSize: 16 }}>
             Let's work together to create amazing online experiences and drive your business growth!
-          </Text>
+          </ThemedText>
         </Animated.View>
         <Animated.View style={[
           {
@@ -104,17 +106,17 @@ export default function Component() {
             }}
           />
         </Animated.View>
-      </View>
-      <View style={{ alignItems: 'center', marginTop: 20, padding: 20 }}>
+      </ThemedView>
+      <ThemedView style={{ alignItems: 'center', marginTop: 20, padding: 20 }}>
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>About Me</Text>
-        <Text style={{ fontSize: 18, marginBottom: 10, textAlign: 'center' }}>
-          My name is Start Bootstrap and I help brands grow.
-        </Text>
-        <Text style={{ textAlign: 'center', marginBottom: 20, color: '#666' }}>
+        <ThemedText style={{ fontSize: 18, marginBottom: 10, textAlign: 'center' }}>
+          Mi Nombre Es Cristhian Un Apasionado De Los Sistemas
+        </ThemedText>
+        <ThemedText style={{ textAlign: 'center', marginBottom: 20, color: '#666' }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque quis congue placerat. 
           Proin ornare efficitur sem, ac elementum ipsum faucibus vel.
-        </Text>
-      </View>
+        </ThemedText>
+      </ThemedView>
     </ScrollView>
   );
 }

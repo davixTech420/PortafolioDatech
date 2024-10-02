@@ -1,16 +1,3 @@
-/* import { useContext } from 'react';
-import { ThemeContext } from '@/context/themeContext';
-import { Button } from 'react-native';
-const ToggleThemeButton = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  return (
-    <Button 
-    title={theme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
-     onPress={toggleTheme} />
-  );
-};
-
-export default ToggleThemeButton; */
 import React, { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ThemeContext } from '@/context/themeContext';
@@ -22,7 +9,10 @@ const ToggleThemeButton = () => {
 
   return (
     <TouchableOpacity
-      onPress={() => {
+    
+      onPress={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
         toggleTheme();
         setPressed(!pressed);
       }}

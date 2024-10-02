@@ -4,6 +4,7 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { ThemeContext } from '@/context/themeContext';
 import ToggleThemeButton from '@/components/BotonTheme';
+import { View } from 'react-native';
 export default function TabLayout() {
   const tema =  useContext(ThemeContext).theme;  
   return (    
@@ -33,13 +34,38 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'peguelo',
+          title: 'Resumen',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
           ),
         }}
       />
-      <ToggleThemeButton/>
+       <Tabs.Screen
+        name="theme"
+        options={{
+          title: tema === 'light' ? 'oscuro' : 'claro',
+          tabBarIcon: () => <ToggleThemeButton />,
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            
+          },
+        }}
+      />
+{/* <Tabs.Screen
+        name="theme"
+        options={{
+          title: '',
+          tabBarIcon: () => <ToggleThemeButton />,
+        }}
+      /> */}
+
+   
+          
+       
+     
+      
      
     </Tabs>
   );

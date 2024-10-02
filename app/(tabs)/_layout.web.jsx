@@ -3,6 +3,7 @@ import React, { useState,useContext } from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { ThemeContext } from '@/context/themeContext';
+import ToggleThemeButton from '@/components/BotonTheme';
 
 export default function TabLayout() {
   const tema =  useContext(ThemeContext).theme;  
@@ -39,7 +40,21 @@ export default function TabLayout() {
             <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
           ),
         }}
-      />     
+      /> 
+
+      <Tabs.Screen
+        name="theme"
+        options={{
+          title:'',
+          tabBarIcon: () => <ToggleThemeButton />,
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            
+          },
+        }}
+      />    
     </Tabs>
   );
 } 
