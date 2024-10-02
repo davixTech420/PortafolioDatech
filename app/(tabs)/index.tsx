@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, useWindowDimensions } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming, Easing } from 'react-native-reanimated';
+import { LinearGradient } from "expo-linear-gradient";  
+import { GradientText } from '@/components/GradientText';
 import { ThemeContext } from '@/context/themeContext';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedText } from '@/components/ThemedText';
@@ -54,10 +56,18 @@ const tema = useContext(ThemeContext).theme;
           },
           textStyle
         ]}>
-          <Text style={{ fontSize: 12, marginBottom: 10, fontWeight: 'bold',backgroundColor:"black" ,color:"white", borderRadius:10,width:"50%"}}>WEB DEVELOPMENT / MARKETING</Text>
-          <ThemedText style={{ fontSize: 24, marginBottom: 10, }}>I can help your business to</ThemedText>
-          <Text style={{ fontSize: 32, fontWeight: 'bold', color: '#8A2BE2', marginBottom: 20 }}>Get online and grow fast</Text>
-          <View style={{width:300, flexDirection: isSmallScreen ? 'column' : 'row', marginBottom: 20 }}>
+
+            <LinearGradient
+            colors={['#4200ff', '#a200ff', '#bd00ff']}
+            start={[0, 0]}
+            end={[1, 1]}
+            style={{ borderRadius:50,padding:5,marginBottom:10 }}
+            >
+            <Text style={{ fontSize: 12, fontWeight: 'bold' ,color:"white"}}>WEB DEVELOPMENT / MARKETING</Text>
+            </LinearGradient>
+            <ThemedText style={{ fontSize: 24, marginBottom: 10, }}>I can help your business to</ThemedText>
+            <GradientText text="Acerca De Mi" style={{ fontSize: 24, fontWeight: 'bold',marginBottom: 10 }}/>
+           <View style={{width:300, flexDirection: isSmallScreen ? 'column' : 'row', marginBottom: 20 }}>
             {['Resume', 'Projects'].map((text, index) => (
               <AnimatedTouchableOpacity 
                 key={text}
@@ -85,6 +95,30 @@ const tema = useContext(ThemeContext).theme;
             Let's work together to create amazing online experiences and drive your business growth!
           </ThemedText>
         </Animated.View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         <Animated.View style={[
           {
             width: isSmallScreen ? '100%' : '50%',
@@ -108,7 +142,7 @@ const tema = useContext(ThemeContext).theme;
         </Animated.View>
       </ThemedView>
       <ThemedView style={{ alignItems: 'center', marginTop: 20, padding: 20 }}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>About Me</Text>
+        <GradientText style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }} text="Sobre Mi" />
         <ThemedText style={{ fontSize: 18, marginBottom: 10, textAlign: 'center' }}>
           Mi Nombre Es Cristhian Un Apasionado De Los Sistemas
         </ThemedText>
