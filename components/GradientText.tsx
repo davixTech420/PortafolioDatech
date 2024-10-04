@@ -16,7 +16,4 @@ export function GradientText(props){
 
         </MaskedView>
     );
-
-
-
 }
