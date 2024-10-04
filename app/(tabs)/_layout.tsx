@@ -17,27 +17,16 @@ export default function TabLayout() {
         tabBarInactiveTintColor: Colors[tema].tabIconDefault,
         tabBarStyle: {
           backgroundColor: Colors[tema].backgroundTab, // Fondo de la barra de pestañas
-          left: 38,
-          right: 38,
+          left: 35,
+          right: 35,
           bottom: 5,
           position: "absolute",
-          borderRadius: 50,
+          borderRadius: 14,
         },
         headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
+      
       <Tabs.Screen
         name="resumen"
         options={{
@@ -62,6 +51,42 @@ export default function TabLayout() {
           ),
         }}
       />
+
+
+
+
+
+
+
+
+<Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <Tabs.Screen
         name="contact"
         options={{
@@ -74,6 +99,12 @@ export default function TabLayout() {
           ),
         }}
       />
+
+
+
+
+
+
       <Tabs.Screen
         name="theme"
         options={{

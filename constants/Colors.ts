@@ -3,6 +3,8 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
+import { BackHandler } from "react-native";
+
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
@@ -15,6 +17,7 @@ export const Colors = {
     icon: '#687076',
     tabIconDefault: 'white',
     tabIconSelected: tintColorLight,
+    backgroundCard: '#F8F8F8',
   },
   dark: {
     text: '#ECEDEE', 
@@ -24,5 +27,6 @@ export const Colors = {
     backgroundTab: 'white',
     tabIconDefault: 'black',
     tabIconSelected: tintColorLight,
+    backgroundCard: '#1A1C1E',
   },
 };

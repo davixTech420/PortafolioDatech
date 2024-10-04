@@ -12,6 +12,9 @@ import Animated, {
   withDelay,
   runOnJS,
 } from 'react-native-reanimated';
+import { Colors } from '@/constants/Colors';
+import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText';
 import { GradientText } from '@/components/GradientText';
 import { GradientButton } from '@/components/GradientButton';
 
@@ -20,7 +23,7 @@ const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 const Card = ({ title, subtitle, description, index, scrollY, initialRender }) => {
   const opacity = useSharedValue(0);
   const translateY = useSharedValue(50);
-
+const tema = useContext(ThemeContext).theme;
   useEffect(() => {
     opacity.value = withDelay(index * 100, withTiming(1, { duration: 500 }));
     translateY.value = withDelay(index * 100, withTiming(0, { duration: 500 }));
@@ -41,10 +44,10 @@ const Card = ({ title, subtitle, description, index, scrollY, initialRender }) =
   });
 
   return (
-    <Animated.View style={[styles.card, animatedStyle]}>
-      <Text style={styles.cardTitle}>{title}</Text>
-      <Text style={styles.cardSubtitle}>{subtitle}</Text>
-      <Text style={styles.cardDescription}>{description}</Text>
+    <Animated.View style={[styles.card, animatedStyle,{backgroundColor:Colors[tema].backgroundCard}]}>
+      <ThemedText style={styles.cardTitle}>{title}</ThemedText>
+      <ThemedText style={styles.cardSubtitle}>{subtitle}</ThemedText>
+      <ThemedText style={styles.cardDescription}>{description}</ThemedText>
     </Animated.View>
   );
 };
@@ -83,7 +86,7 @@ export default function ModernAnimatedResume() {
   const scrollY = useSharedValue(0);
   const initialRender = useSharedValue(false);
   
-
+  const tema = useContext(ThemeContext).theme;
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       scrollY.value = event.contentOffset.y;
@@ -106,41 +109,26 @@ export default function ModernAnimatedResume() {
 
   const professionalSkills = ["React", "Node.js", "JavaScript", "Python", "Git"];
   const languages = ["English", "Spanish", "French"];
-
-  const headerStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      scrollY.value,
-      [0, 100],
-      [1, 0],
-      Extrapolate.CLAMP
-    );
-    const translateY = interpolate(
-      scrollY.value,
-      [0, 100],
-      [0, -50],
-      Extrapolate.CLAMP
-    );
-    return {
-      opacity,
-      transform: [{ translateY }],
-    };
-  });
-
   const { theme } = useContext(ThemeContext);
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.header, headerStyle]}>
-        <GradientText text="Resume" style={styles.headerText} />
-        <GradientButton text="Download" textStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }} buttonStyle={styles.downloadButton} />
-      </Animated.View>
+    <ThemedView style={styles.container}>
+      
       
       <AnimatedScrollView 
         style={styles.scrollView}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
       >
-        <View style={styles.content}>
-          <Text style={styles.sectionTitle}>Experience</Text>
+        <ThemedView style={[ styles.header,{borderBottomColor: Colors[theme].backgroundTab}]}>
+        <GradientText text="Resume" style={styles.headerText} />
+        <GradientButton text="Download" textStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }} buttonStyle={styles.downloadButton} />
+        </ThemedView>
+
+
+
+
+        <ThemedView style={styles.content}>
+          <GradientText text="Experience" style={styles.sectionTitle} />
           {experiences.map((exp, index) => (
             <Card key={index} {...exp} index={index} scrollY={scrollY} initialRender={initialRender.value} />
           ))}
@@ -152,16 +140,14 @@ export default function ModernAnimatedResume() {
 
           <SkillsSection title="Professional Skills" skills={professionalSkills} index={experiences.length + education.length} scrollY={scrollY} initialRender={initialRender.value} />
           <SkillsSection title="Languages" skills={languages} index={experiences.length + education.length + 1} scrollY={scrollY} initialRender={initialRender.value} />
-        </View>
+        </ThemedView>
       </AnimatedScrollView>
-    </View>
+    </ThemedView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',  
+    flex: 1,  
   },
   header: {
     position: 'absolute',
@@ -170,14 +156,12 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1,
     padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
   },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4a4af4',
+
     marginBottom: 10,
   },
   downloadButton: {
@@ -185,11 +169,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 20,
     alignSelf: 'flex-start',
-  },
-  downloadButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 14,
   },
   scrollView: {
     flex: 1,
@@ -203,10 +182,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 20,
     marginBottom: 10,
-    color: '#4a4af4',
   },
   card: {
-    backgroundColor: '#f8f8f8',
     borderRadius: 12,
     padding: 20,
     marginBottom: 15,
@@ -229,16 +206,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: '#333',
   },
   cardSubtitle: {
     fontSize: 14,
-    color: '#666',
+   
     marginBottom: 5,
   },
   cardDescription: {
     fontSize: 14,
-    color: '#444',
+    
   },
   skillsSection: {
     marginTop: 20,
