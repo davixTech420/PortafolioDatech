@@ -5,7 +5,7 @@ import { Colors } from "@/constants/Colors";
 import { ThemeContext } from "@/context/themeContext";
 import ToggleThemeButton from "@/components/BotonTheme";
 import { LinearGradient } from "expo-linear-gradient";
-import { View } from "react-native";
+import { Platform } from "react-native";
 import GradientIcon from "@/components/GradientIcon";
 
 export default function TabLayout() {
@@ -20,13 +20,17 @@ export default function TabLayout() {
           left: 35,
           right: 35,
           bottom: 8,
+          ...Platform.select({
+            web: {
+              top: 15,
+            },
+          }),
           position: "absolute",
           borderRadius: 14,
         },
         headerShown: false,
       }}
     >
-      
       <Tabs.Screen
         name="resumen"
         options={{
@@ -52,14 +56,7 @@ export default function TabLayout() {
         }}
       />
 
-
-
-
-
-
-
-
-<Tabs.Screen
+      <Tabs.Screen
         name="index"
         options={{
           title: "Home",
@@ -71,21 +68,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <Tabs.Screen
         name="contact"
@@ -99,11 +81,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
-
-
-
-
 
       <Tabs.Screen
         name="theme"

@@ -5,7 +5,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { TabBarIcon } from './navigation/TabBarIcon';
  
 
-function GradientIcon(props:any)  {
+function GradientIcon(props)  {
   return (
     <MaskedView
       maskElement={
