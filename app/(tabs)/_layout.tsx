@@ -19,7 +19,7 @@ export default function TabLayout() {
           backgroundColor: Colors[tema].backgroundTab, // Fondo de la barra de pestañas
           left: 35,
           right: 35,
-          bottom: 5,
+          bottom: 8,
           position: "absolute",
           borderRadius: 14,
         },
