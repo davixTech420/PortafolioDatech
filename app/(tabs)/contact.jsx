@@ -3,11 +3,12 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Linking,
+  Alert
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -24,8 +25,18 @@ import { ThemeContext } from "@/context/themeContext";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      setVisible(true);
+      setTimeout(() => {
+        setVisible(false);
+      }, 3000);
+    }
+  }, [error]);
 
   const formAnimation = useSharedValue(0);
   const buttonScale = useSharedValue(1);
@@ -44,11 +55,38 @@ export default function ContactForm() {
   });
 
   const handleSubmit = () => {
+if (!name || !message) {
+  setError('Por favor, rellena todos los campos');
+  setVisible(true);
+  return;
+}
     buttonScale.value = withTiming(0.95, { duration: 100 }, () => {
       buttonScale.value = withTiming(1, { duration: 100 });
     });
-    // Here you would typically handle the form submission
-    console.log("Form submitted:", { name, email, message });
+    const phoneNumber = '+573242855700'; // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
+    const whatsappURL = `whatsapp://send?phone=${phoneNumber}&text=Hola, mi nombre es ${name}. ${message}`;
+    const webWhatsAppURL = `https://wa.me/${phoneNumber}?text=Hola, mi nombre es ${name}. ${message}`;
+
+    if (Platform.OS === 'web') {
+      // Si es web, abrimos WhatsApp Web
+      window.open(webWhatsAppURL, '_blank');
+    } else {
+      // Si es móvil, verificamos si WhatsApp está instalado
+      Linking.canOpenURL(whatsappURL)
+        .then(supported => {
+          if (supported) {
+            return Linking.openURL(whatsappURL); // Abrir la app de WhatsApp en móvil
+          } else {
+            Alert.alert(
+              'WhatsApp no está instalado',
+              'Por favor, instala WhatsApp para poder enviar el mensaje.'
+            );
+          }
+        })
+        .catch(err => {
+          Alert.alert("Error al intentar abrir WhatsApp", err);
+        });
+    }
   };
 
   useEffect(() => {
@@ -69,27 +107,25 @@ export default function ContactForm() {
           <View style={styles.iconContainer}>
             <Text style={styles.icon}>✉️</Text>
           </View>
-          <Text style={styles.title}>Get in touch</Text>
-          <Text style={styles.subtitle}>Let's work together!</Text>
-
+          <GradientText text="Contactame" style={styles.title} />
+          <Text style={styles.subtitle}>Vamos Hacer Historia Juntos!</Text>
+          {visible && error && (
+        <Text style={{ backgroundColor: 'red', color: 'white', padding: 10 }}>
+          {error}
+        </Text>
+      )}
           <TextInput
-            style={styles.input}
-            placeholder="Full name"
+            style={[styles.input,{ backgroundColor: Colors[tema].background, color: Colors[tema].text }]}
+            placeholder="Nombre"
             value={name}
             onChangeText={setName}
             placeholderTextColor="#A0AEC0"
+            required
           />
+          
           <TextInput
-            style={styles.input}
-            placeholder="Email address"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            placeholderTextColor="#A0AEC0"
-          />
-          <TextInput
-            style={[styles.input, styles.messageInput]}
-            placeholder="Message"
+            style={[styles.input, styles.messageInput,{ backgroundColor: Colors[tema].background, color: Colors[tema].text }]}
+            placeholder="Mensaje"
             value={message}
             onChangeText={setMessage}
             multiline
@@ -118,7 +154,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   form: {
-   
     borderRadius: 12,
     padding: 24,
     shadowColor: "#000",
@@ -148,12 +183,11 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   input: {
-    backgroundColor: "#EDF2F7",
+   
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
     fontSize: 16,
-    color: "#2D3748",
   },
   messageInput: {
     height: 100,

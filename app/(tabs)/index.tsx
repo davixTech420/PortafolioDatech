@@ -22,6 +22,7 @@ import  GradientIcon  from "@/components/GradientIcon";
 import { ThemeContext } from "@/context/themeContext";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
+import { router } from "expo-router";
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -101,14 +102,14 @@ export default function Component() {
             style={{ borderRadius: 50, padding: 5, marginBottom: 10 }}
           >
             <Text style={{ fontSize: 12, fontWeight: "bold", color: "white" }}>
-              WEB DEVELOPMENT / MARKETING
+              DESARROLLADOR / WEB , MOBILES
             </Text>
           </LinearGradient>
           <ThemedText style={{ fontSize: 24, marginBottom: 10 }}>
-            I can help your business to
+          Puedo ayudar a tu negocio a
           </ThemedText>
           <GradientText
-            text="Acerca De Mi"
+            text="Superar Los Limites"
             style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10 }}
           />
           <View
@@ -119,7 +120,7 @@ export default function Component() {
             }}
           >
 
-            <GradientButton text="Resumen" textStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }} buttonStyle={{ padding: 15, borderRadius: 50 }}   onPress={() => {}} />
+            <GradientButton text="Resumen" textStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }} buttonStyle={{ padding: 15, borderRadius: 50 }}   onPress={() => { router.navigate("/resumen") }} />
 
             <AnimatedTouchableOpacity
                   style={[
@@ -134,6 +135,7 @@ export default function Component() {
                     },
                     buttonAnimatedStyle,
                   ]}
+                  onPress={() => { router.navigate("/proyects") }}
                   onPressIn={handlePressIn}
                   onPressOut={handlePressOut}
                 >
@@ -203,15 +205,13 @@ export default function Component() {
         <ThemedText
           style={{ textAlign: "center", marginBottom: 20, color: "#666" }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-          bibendum neque quis congue placerat. Proin ornare efficitur sem, ac
-          elementum ipsum faucibus vel.
+         Soy un desarrollador de software enfocado en crear aplicaciones eficientes y escalables. Me encanta resolver problemas y aprender nuevas tecnologías. Si buscas innovación y calidad, ¡hablemos!
         </ThemedText>
       </ThemedView>
       <View style={{   flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: isSmallScreen ? 60 : 0 }}>
       
-        <GradientIcon name="logo-github"  />
-        <GradientIcon name="logo-youtube"  />
+        <GradientIcon name="logo-github" />
+        <GradientIcon name="logo-youtube" />
         <GradientIcon name="logo-facebook"  />
         <GradientIcon name="logo-linkedin"  />
       </View>

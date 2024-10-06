@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  Platform,
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -19,18 +20,9 @@ import { ThemedText } from "@/components/ThemedText";
 import { GradientText } from "@/components/GradientText";
 import { ThemeContext } from "@/context/themeContext";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
-/* const ProjectCard = ({ title, description }) => (
-  <View style={styles.card}>
-    <View style={styles.cardContent}>
-      <Text style={styles.projectTitle}>{title}</Text>
-      <Text style={styles.projectDescription}>{description}</Text>
-    </View>
-        <View style={styles.imagePlaceholder} />
-  </View>
-); */
 const ProjectCard = ({
   title,
   description,
@@ -62,6 +54,7 @@ export default function ProjectShowcase() {
         buttonAnimation.value = withSpring(1);
       }
     });
+  router.navigate("/contact");
   };
   const tema = useContext(ThemeContext).theme;
   return (
@@ -82,7 +75,7 @@ export default function ProjectShowcase() {
         />
       </View>
       <LinearGradient colors={["#4200ff", "#a200ff", "#bd00ff"]} style={styles.footer}>
-        <Text style={styles.footerText}>Let's build something together</Text>
+        <Text style={styles.footerText}>Demos Vida A Las Ideas</Text>
         <Animated.View style={[styles.buttonContainer, animatedButtonStyle]}>
           <TouchableOpacity style={styles.button} onPress={handlePress}>
             <Text style={styles.buttonText}>Contactame</Text>
@@ -138,6 +131,13 @@ const styles = StyleSheet.create({
   footer: {
     padding: 20,
     alignItems: "center",
+
+    ...Platform.select({
+      android: {
+        marginBottom: 60,
+      }
+      
+    })
   },
   footerText: {
     fontSize: 18,
