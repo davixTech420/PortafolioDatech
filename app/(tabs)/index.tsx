@@ -14,7 +14,6 @@ import Animated, {
   withTiming,
   Easing,
 } from "react-native-reanimated";
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { GradientText } from "@/components/GradientText";
 import { GradientButton } from "@/components/GradientButton";
@@ -212,8 +211,8 @@ export default function Component() {
       
         <GradientIcon name="logo-github" />
         <GradientIcon name="logo-youtube" />
-        <GradientIcon name="logo-facebook"  />
-        <GradientIcon name="logo-linkedin"  />
+        <GradientIcon name="logo-facebook" />
+        <GradientIcon name="logo-linkedin" />
       </View>
 
     </AnimatedScrollView>

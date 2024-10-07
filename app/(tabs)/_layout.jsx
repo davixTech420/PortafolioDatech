@@ -85,7 +85,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="theme"
         options={{
-          title: tema === "light" ? "oscuro" : "claro",
+          title:
+
+          tema === "light" ? "oscuro" : "claro",
           tabBarIcon: () => <ToggleThemeButton />,
         }}
         listeners={{

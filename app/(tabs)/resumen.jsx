@@ -89,7 +89,7 @@ const SkillsSection = ({ title, skills, index, scrollY, initialRender }) => {
   });
 
   return (
-    <Animated.View style={[ animatedStyle, { marginBottom:45  } ]}>
+    <Animated.View style={[animatedStyle, { marginBottom: 45 }]}>
       <GradientText text={title} style={styles.sectionTitle} />
       <View style={styles.skillsContainer}>
         {skills.map((skill, index) => (
@@ -125,7 +125,6 @@ export default function ModernAnimatedResume() {
 
   const experiences = [
     { title: "N/A", subtitle: " ", description: "  " },
-    /* { title: "Junior Developer", subtitle: "StartUp Inc, 2017 - 2019", description: "Assisted in the development of mobile applications using React Native." }, */
   ];
 
   const education = [
@@ -148,7 +147,7 @@ export default function ModernAnimatedResume() {
     "Api",
     "Seguridad Web",
   ];
-  const languages = ["PHP", "Laravel", "JavaScript", "React","Express JS","Python","MySql","CSS","Tailwind"];
+  const languages = ["PHP", "Laravel", "JavaScript", "React", "Express JS", "Python", "MySql", "CSS", "Tailwind"];
   const { theme } = useContext(ThemeContext);
   return (
     <ThemedView style={styles.container}>
@@ -164,11 +163,17 @@ export default function ModernAnimatedResume() {
           ]}
         >
           <GradientText text="Resumen" style={styles.headerText} />
+
+
+
           <GradientButton
             text="Descargar"
             textStyle={{ fontSize: 14, color: "white", fontWeight: "bold" }}
             buttonStyle={styles.downloadButton}
           />
+
+
+
         </ThemedView>
         <ThemedView style={styles.content}>
           <GradientText text="Experiencia" style={styles.sectionTitle} />
@@ -286,7 +291,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   skillsContainer: {
-  
+
     flexDirection: "row",
     flexWrap: "wrap",
   },
