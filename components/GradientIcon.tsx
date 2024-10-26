@@ -5,20 +5,15 @@ import { TabBarIcon } from './navigation/TabBarIcon';
 import { Platform } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-function GradientIcon(props) {
+function GradientIcon(props:any) {
   if (Platform.OS === 'web') {
     return (
       <>
-      <LinearGradient
-        colors={["blue", '#4200ff', '#a200ff', '#bd00ff']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
-        <TabBarIcon name={props.name} style={[props.style, { backgroundColor: 'transparent' }]} />
-      </LinearGradient>
+        <TabBarIcon  name={props.name} style={[props.style, { color: '#a200ff' }]} 
+        />
+     
       </>
     );
-    
   }
   return (
     <MaskedView

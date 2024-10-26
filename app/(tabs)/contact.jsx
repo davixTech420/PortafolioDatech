@@ -32,9 +32,6 @@ export default function ContactForm() {
   useEffect(() => {
     if (error) {
       setVisible(true);
-      setTimeout(() => {
-        setVisible(false);
-      }, 3000);
     }
   }, [error]);
 
@@ -133,7 +130,7 @@ if (!name || !message) {
             placeholderTextColor="#A0AEC0"
           />
           <GradientButton
-            text="Submit"
+            text="Enviar"
             buttonStyle={styles.button}
             textStyle={styles.buttonText}
             onPress={handleSubmit}

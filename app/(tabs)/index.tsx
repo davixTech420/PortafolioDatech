@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
   useWindowDimensions,
+  Platform,
+  Linking
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -41,9 +43,9 @@ export default function Component() {
     });
   }, []);
 
-  const imageStyle = useAnimatedStyle(() => ({
+   const imageStyle = useAnimatedStyle(() => ({
     transform: [{ scale: imageScale.value }],
-  }));
+  })); 
 
   const textStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: textTranslateY.value }],
@@ -63,7 +65,8 @@ export default function Component() {
   };
   const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
   return (
-    <AnimatedScrollView
+    <>
+     <AnimatedScrollView
       style={{ backgroundColor: tema === "dark" ? "#151718" : "white" }}
       onScroll={(event) => {
         const y = event.nativeEvent.contentOffset.y;
@@ -73,7 +76,7 @@ export default function Component() {
           textTranslateY.value = withTiming(0, { duration: 1000 });
         }
       }}
-    >
+    > 
       <ThemedView
         style={{
           flexDirection: isSmallScreen ? "column" : "row",
@@ -88,8 +91,10 @@ export default function Component() {
               padding: 20,
               alignItems: "center",
               borderRadius: 20,
-              marginRight: isSmallScreen ? 0 : 20,
-              marginBottom: isSmallScreen ? 20 : 0,
+              bottom:-30,
+              marginBottom: 20,
+              /* marginRight: isSmallScreen ? 0 : 20,
+              marginBottom: isSmallScreen ? 20 : 0, */
             },
             textStyle,
           ]}
@@ -116,6 +121,7 @@ export default function Component() {
               width: 300,
               flexDirection: isSmallScreen ? "column" : "row",
               marginBottom: 20,
+              justifyContent: "space-around",
             }}
           >
 
@@ -150,46 +156,66 @@ export default function Component() {
           </View>
           
         </Animated.View>
-
+      {Platform.OS === "web" && (
+        <>
         <LinearGradient
-          colors={["#4200ff", "#a200ff", "#bd00ff"]}
-          start={[0, 0]}
-          end={[1, 1]}
-          style={{
-            flex: 1,
-            borderRadius: 20,
-            shadowColor: "black",
-            shadowOffset: { width: 0, height: 0 },
-            shadowOpacity: 0.9,
-            shadowRadius: 10,
-            elevation: 10,
-          }}
-        >
-          <Animated.View
-            style={[
-              {
-                width: isSmallScreen ? "100%" : "50%",
-                height: "100%",
-                aspectRatio: 1,
-                overflow: "hidden",
-                justifyContent: "center",
-                alignItems: "center",
-              },
-              imageStyle,
-            ]}
-          >
-            <Image
-              source={require("../../assets/images/yo.png")}
-              style={{
-                borderRadius: 20,
-                width: "100%",
-                height: "100%",
-                resizeMode: "contain",
-                bottom: 0,
-              }}
-            />
-          </Animated.View>
+         colors={["#4200ff", "#a200ff", "#bd00ff"]}
+         start={[0, 0]}
+         end={[1, 1]}
+         style={{
+          marginTop: 60,
+          borderRadius: 20,
+          right:isSmallScreen ? 0 : 45,
+         }}
+         >
+        <img src="../../assets/images/yo.png"  width={isSmallScreen ? 300 : 400} style={{ borderRadius: 20 }}  />
         </LinearGradient>
+
+       
+        </>
+
+      )}
+      {Platform.OS !== "web" && (
+         <LinearGradient
+         colors={["#4200ff", "#a200ff", "#bd00ff"]}
+         start={[0, 0]}
+         end={[1, 1]}
+         style={{
+           flex: 1,
+           borderRadius: 20,
+           shadowColor: "black",
+           shadowOffset: { width: 0, height: 0 },
+           shadowOpacity: 0.9,
+           shadowRadius: 10,
+            marginTop: 25,
+         }}
+       >
+         <Animated.View
+           style={[
+             {
+               width: "100%",
+               height: "100%",
+               aspectRatio: 1,
+               justifyContent: "center",
+               alignItems: "center",
+             },
+            imageStyle
+           ]}
+         >
+           <Image
+             source={require("../../assets/images/yo.png")}
+             style={{
+               borderRadius: 20,
+               width: "100%",
+               height: "100%",
+              
+               bottom: 0,
+             }}
+           />
+         </Animated.View>
+       </LinearGradient>
+      )}
+       
       </ThemedView>
       <ThemedView style={{ alignItems: "center", marginTop: 20, padding: 20 }}>
         <GradientText
@@ -207,15 +233,31 @@ export default function Component() {
          Soy un desarrollador de software enfocado en crear aplicaciones eficientes y escalables. Me encanta resolver problemas y aprender nuevas tecnologías. Si buscas innovación y calidad, ¡hablemos!
         </ThemedText>
       </ThemedView>
-      <View style={{   flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: isSmallScreen ? 60 : 0 }}>
+      <View style={{   flexDirection: "row", justifyContent: "space-around", alignItems: "center", marginBottom: isSmallScreen ? 80 : 25 }}>
       
-        <GradientIcon name="logo-github" />
-        <GradientIcon name="logo-youtube" />
+      <TouchableOpacity
+      onPress={() => { Linking.openURL("https://github.com/davixTech420") }}>
+        <GradientIcon name="logo-github"  />
+        </TouchableOpacity>
+        <TouchableOpacity
+      onPress={() => { Linking.openURL("https://www.linkedin.com/in/cristhian-amaya-338b05271") }}>
+                <GradientIcon name="logo-linkedin" />
+        </TouchableOpacity>
+        <TouchableOpacity
+      onPress={() => { Linking.openURL("https://www.facebook.com/profile.php?id=100015933678587") }}>
         <GradientIcon name="logo-facebook" />
-        <GradientIcon name="logo-linkedin" />
+        </TouchableOpacity>
+        <TouchableOpacity
+      onPress={() => { Linking.openURL("https://www.youtube.com/@Datech-420") }}>
+        <GradientIcon name="logo-youtube" />
+        </TouchableOpacity>
+        
+        
+
       </View>
 
-    </AnimatedScrollView>
+      </AnimatedScrollView>  
+    </>
   );
 }
 

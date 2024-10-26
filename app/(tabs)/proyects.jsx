@@ -89,6 +89,7 @@ export default function ProjectShowcase() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === "web" ? 40 : 0,
   },
   content: {
     padding: 20,

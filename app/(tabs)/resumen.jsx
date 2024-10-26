@@ -24,6 +24,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { GradientText } from "@/components/GradientText";
 import { GradientButton } from "@/components/GradientButton";
+import  GradientIcon from "@/components/GradientIcon";
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
@@ -123,9 +124,7 @@ export default function ModernAnimatedResume() {
     runOnJS(() => (initialRender.value = true))();
   }, []);
 
-  const experiences = [
-    { title: "N/A", subtitle: " ", description: "  " },
-  ];
+  const experiences = [{ title: "N/A", subtitle: " ", description: "  " }];
 
   const education = [
     {
@@ -140,14 +139,34 @@ export default function ModernAnimatedResume() {
         "Bases sólidas en programación y desarrollo de aplicaciones.",
     },
   ];
+  const cursos = [
+    {
+      title:"Desarrollo Web con php",
+    },
+    {
+title:"Estructura control python",
+    },
+    {
+      title:"Lenguaje De Programacion C++ Nv I"
+    },
+    {
+      title:"Lenguaje De Programacion C++ Nv II"
+    }
 
-  const professionalSkills = [
-    "Linux",
-    "Git",
-    "Api",
-    "Seguridad Web",
+  ]
+
+  const professionalSkills = ["Linux", "Git", "Api", "Seguridad Web"];
+  const languages = [
+    "PHP",
+    "Laravel",
+    "JavaScript",
+    "React",
+    "Express JS",
+    "Python",
+    "MySql",
+    "CSS",
+    "Tailwind",
   ];
-  const languages = ["PHP", "Laravel", "JavaScript", "React", "Express JS", "Python", "MySql", "CSS", "Tailwind"];
   const { theme } = useContext(ThemeContext);
   return (
     <ThemedView style={styles.container}>
@@ -164,16 +183,11 @@ export default function ModernAnimatedResume() {
         >
           <GradientText text="Resumen" style={styles.headerText} />
 
-
-
           <GradientButton
             text="Descargar"
             textStyle={{ fontSize: 14, color: "white", fontWeight: "bold" }}
             buttonStyle={styles.downloadButton}
           />
-
-
-
         </ThemedView>
         <ThemedView style={styles.content}>
           <GradientText text="Experiencia" style={styles.sectionTitle} />
@@ -197,7 +211,15 @@ export default function ModernAnimatedResume() {
               initialRender={initialRender.value}
             />
           ))}
-
+          <TouchableOpacity style={{
+            alingItems:"center",display:"flex",justifyContent:"center",textAlign:"center"
+          }}>
+            <ThemedView style={[styles.card,{ backgroundColor:Colors[theme].backgroundCard }]}>
+              <ThemedText>Cursos</ThemedText>
+              <GradientIcon name="arrow-down-circle-outline" />
+            </ThemedView>
+          </TouchableOpacity>
+         
           <SkillsSection
             title="Skills"
             skills={professionalSkills}
@@ -220,6 +242,7 @@ export default function ModernAnimatedResume() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS == "web" ? 45 : 0,
   },
   header: {
     position: "absolute",
@@ -291,7 +314,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   skillsContainer: {
-
     flexDirection: "row",
     flexWrap: "wrap",
   },
