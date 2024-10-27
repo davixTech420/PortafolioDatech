@@ -1,5 +1,5 @@
 /*propiedad de Datech*/
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import {
   View,
   Text,
@@ -24,7 +24,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { GradientText } from "@/components/GradientText";
 import { GradientButton } from "@/components/GradientButton";
-import  GradientIcon from "@/components/GradientIcon";
+import GradientIcon from "@/components/GradientIcon";
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
@@ -112,7 +112,7 @@ const SkillsSection = ({ title, skills, index, scrollY, initialRender }) => {
 export default function ModernAnimatedResume() {
   const scrollY = useSharedValue(0);
   const initialRender = useSharedValue(false);
-
+  const [openCursos, setOpenCursos] = useState(false);
   const tema = useContext(ThemeContext).theme;
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -140,20 +140,11 @@ export default function ModernAnimatedResume() {
     },
   ];
   const cursos = [
-    {
-      title:"Desarrollo Web con php",
-    },
-    {
-title:"Estructura control python",
-    },
-    {
-      title:"Lenguaje De Programacion C++ Nv I"
-    },
-    {
-      title:"Lenguaje De Programacion C++ Nv II"
-    }
-
-  ]
+    "Desarrollo Web con php",
+    "Estructura control python",
+    "Lenguaje De Programacion C++ Nv I",
+    "Lenguaje De Programacion C++ Nv II",
+  ];
 
   const professionalSkills = ["Linux", "Git", "Api", "Seguridad Web"];
   const languages = [
@@ -211,15 +202,61 @@ title:"Estructura control python",
               initialRender={initialRender.value}
             />
           ))}
-          <TouchableOpacity style={{
-            alingItems:"center",display:"flex",justifyContent:"center",textAlign:"center"
-          }}>
-            <ThemedView style={[styles.card,{ backgroundColor:Colors[theme].backgroundCard }]}>
-              <ThemedText>Cursos</ThemedText>
-              <GradientIcon name="arrow-down-circle-outline" />
+          <GradientText text="Cursos" style={styles.sectionTitle} />
+          <TouchableOpacity
+            style={{
+              alingItems: "center",
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+            onPress={() => setOpenCursos((prevState) => !prevState)}
+          >
+            <ThemedView
+              style={[
+                styles.card,
+                {
+                  backgroundColor: Colors[theme].backgroundCard,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                },
+              ]}
+            >
+              <GradientIcon
+                name="arrow-down-circle-outline"
+                style={{
+                  fontSize: 80,
+                }}
+              />
             </ThemedView>
           </TouchableOpacity>
-         
+          <ThemedView
+            style={[
+              styles.card,
+              {
+                backgroundColor: Colors[theme].backgroundCard,
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                display: openCursos == false ? "none" : "block",
+                transform: [{ translateY: openCursos == false ? 0 : -14 }],
+                transitionProperty: "opacity, transform",
+                transitionDuration: "2s",
+                transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+                willChange: "transform, opacity",
+              },
+            ]}
+          >
+            <SkillsSection
+              title={""}
+              skills={cursos}
+              index={experiences.length + education.length + 1}
+              scrollY={scrollY}
+              initialRender={initialRender.value}
+            />
+          </ThemedView>
+
           <SkillsSection
             title="Skills"
             skills={professionalSkills}
