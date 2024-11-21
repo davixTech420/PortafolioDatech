@@ -156,7 +156,7 @@ export default function Component() {
           </View>
           
         </Animated.View>
-      {Platform.OS === "web" && (
+      {Platform.OS == "web" && (
         <>
         <LinearGradient
          colors={["#4200ff", "#a200ff", "#bd00ff"]}
@@ -168,7 +168,7 @@ export default function Component() {
           right:isSmallScreen ? 0 : 45,
          }}
          >
-        <img src="../../assets/images/yo.png"  width={isSmallScreen ? 300 : 400} style={{ borderRadius: 20 }}  />
+        <img src={"../../assets/images/yo.png"}  width={isSmallScreen ? 300 : 400} style={{ borderRadius: 20 }}  />
         </LinearGradient>
 
        
