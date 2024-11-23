@@ -169,7 +169,7 @@ export default function Component() {
          }}
          >
           <Image source={require("../../assets/images/yo.png")} style={{ borderRadius: 20,width: isSmallScreen ? 300 : 400, height: isSmallScreen ? 300 : 400 }}  />
-        <img src="../../assets/images/yo.png"  width={isSmallScreen ? 300 : 400} style={{ borderRadius: 20 }}  />
+        
         </LinearGradient>
 
        
