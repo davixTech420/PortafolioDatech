@@ -7,11 +7,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 function GradientIcon(props:any) {
   if (Platform.OS === 'web') {
-    return (
+    return ( 
       <>
         <TabBarIcon  name={props.name} style={[props.style, { color: '#a200ff' }]} 
         />
-     
       </>
     );
   }

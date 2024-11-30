@@ -169,12 +169,8 @@ export default function Component() {
          }}
          >
           <Image source={require("../../assets/images/yo.png")} style={{ borderRadius: 20,width: isSmallScreen ? 300 : 400, height: isSmallScreen ? 300 : 400 }}  />
-        
         </LinearGradient>
-
-       
         </>
-
       )}
       {Platform.OS !== "web" && (
          <LinearGradient
@@ -234,8 +230,7 @@ export default function Component() {
          Soy un desarrollador de software enfocado en crear aplicaciones eficientes y escalables. Me encanta resolver problemas y aprender nuevas tecnologías. Si buscas innovación y calidad, ¡hablemos!
         </ThemedText>
       </ThemedView>
-      <View style={{   flexDirection: "row", justifyContent: "space-around", alignItems: "center", marginBottom: isSmallScreen ? 80 : 25 }}>
-      
+      <View style={{   flexDirection: "row", justifyContent: "space-around", alignItems: "center", marginBottom: isSmallScreen ? 80 : 25 }}>  
       <TouchableOpacity
       onPress={() => { Linking.openURL("https://github.com/davixTech420") }}>
         <GradientIcon name="logo-github"  />
@@ -252,11 +247,7 @@ export default function Component() {
       onPress={() => { Linking.openURL("https://www.youtube.com/@Datech-420") }}>
         <GradientIcon name="logo-youtube" />
         </TouchableOpacity>
-        
-        
-
       </View>
-
       </AnimatedScrollView>  
     </>
   );

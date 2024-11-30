@@ -85,7 +85,6 @@ if (!name || !message) {
         });
     }
   };
-
   useEffect(() => {
     formAnimation.value = withTiming(1, {
       duration: 1000,

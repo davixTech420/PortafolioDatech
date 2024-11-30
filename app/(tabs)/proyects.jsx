@@ -65,13 +65,13 @@ export default function ProjectShowcase() {
         <GradientText text="Proyectos" style={styles.title} />
         <ProjectCard
         styleCard={{backgroundColor:Colors[tema].backgroundCard}}
-          title="Project Name 1"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          title="Datech LPC"
+          description="Sistema de informacion para la laogistica del alquiler de teatro y agendamientos de eventos."
         />
         <ProjectCard
         styleCard={{backgroundColor:Colors[tema].backgroundCard}}
-          title="Project Name 2"
-          description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          title="Datech Store"
+          description="frontend en react tienda de juegos"
         />
       </View>
       <LinearGradient colors={["#4200ff", "#a200ff", "#bd00ff"]} style={styles.footer}>
