@@ -60,7 +60,7 @@ if (!name || !message) {
     buttonScale.value = withTiming(0.95, { duration: 100 }, () => {
       buttonScale.value = withTiming(1, { duration: 100 });
     });
-    const phoneNumber = '+573242855700'; // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
+    const phoneNumber = '+573021134179'; // Reemplaza con el número de WhatsApp al que deseas enviar el mensaje
     const whatsappURL = `whatsapp://send?phone=${phoneNumber}&text=Hola, mi nombre es ${name}. ${message}`;
     const webWhatsAppURL = `https://wa.me/${phoneNumber}?text=Hola, mi nombre es ${name}. ${message}`;
 
