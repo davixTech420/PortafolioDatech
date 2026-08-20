@@ -152,10 +152,11 @@ const styles = StyleSheet.create({
   form: {
     borderRadius: 12,
     padding: 24,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    /* shadowColor: "#000", */
+    /* shadowOffset: { width: 0, height: 2 }, */
+    boxShadow: '0px 2px 3.84px rgba(0, 0, 0, 0.25)',
+    /* shadowOpacity: 0.1,
+    shadowRadius: 8, */
     elevation: 5,
   },
   iconContainer: {

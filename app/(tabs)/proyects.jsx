@@ -150,6 +150,34 @@ export default function ProjectShowcase() {
         "Tecnologías utilizadas: Laravel,Mysql",
         link:"",
     },
+    {
+      title: "DJ Mala Sangre",
+      description: "tienda virtual administrable",
+      imageSource: require("@/assets/images/malasangre.png"),
+      fullDescription:
+        "Sistema de informacion para la administracion de mi tienda virtual.\n\n" +
+        "Características principales:\n" +
+        "- Gestión de usuarios\n" +
+        "- Gestion de  inventario y filtrado por categorias\n" +
+        "- Sistema de califacion,comentarios y lista de deseos\n" +
+        "- Gestion de ventas y pedidos\n\n" +
+        "Tecnologías utilizadas: Laravel,Mysql",
+        link:"https://malasangre-eight.vercel.app/",
+    },
+    {
+      title: "Eventos The Ring",
+      description: "tienda virtual administrable",
+      imageSource:"",
+      fullDescription:
+        "Sistema de informacion para la administracion de mi tienda virtual.\n\n" +
+        "Características principales:\n" +
+        "- Gestión de usuarios\n" +
+        "- Gestion de  inventario y filtrado por categorias\n" +
+        "- Sistema de califacion,comentarios y lista de deseos\n" +
+        "- Gestion de ventas y pedidos\n\n" +
+        "Tecnologías utilizadas: Laravel,Mysql",
+        link:"",
+    },
   ]
 
   return (
@@ -209,10 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 8,
     marginBottom: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
     elevation: 3,
     overflow: "hidden",
   },
