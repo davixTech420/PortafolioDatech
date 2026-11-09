@@ -23,6 +23,8 @@
       "package": "com.datech420.myapp"
     },
     "web": {
+      "name": "Datech",
+      "shortName": "Datech",
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"

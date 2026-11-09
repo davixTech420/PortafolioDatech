@@ -152,7 +152,7 @@ export default function ProjectShowcase() {
     },
     {
       title: "DJ Mala Sangre",
-      description: "tienda virtual administrable",
+      description: "Portafolio musical de DJ Mala Sangre",
       imageSource: require("@/assets/images/malasangre.png"),
       fullDescription:
         "Sistema de informacion para la administracion de mi tienda virtual.\n\n" +
@@ -162,12 +162,12 @@ export default function ProjectShowcase() {
         "- Sistema de califacion,comentarios y lista de deseos\n" +
         "- Gestion de ventas y pedidos\n\n" +
         "Tecnologías utilizadas: Laravel,Mysql",
-        link:"https://malasangre-eight.vercel.app/",
+        link:"https://dj.datech.digital/",
     },
     {
       title: "Eventos The Ring",
-      description: "tienda virtual administrable",
-      imageSource:"",
+      description: "Preparar los mejores eventos en la ciudad de bogota",
+      imageSource:require("@/assets/images/eventosthering.png"),
       fullDescription:
         "Sistema de informacion para la administracion de mi tienda virtual.\n\n" +
         "Características principales:\n" +
@@ -176,7 +176,7 @@ export default function ProjectShowcase() {
         "- Sistema de califacion,comentarios y lista de deseos\n" +
         "- Gestion de ventas y pedidos\n\n" +
         "Tecnologías utilizadas: Laravel,Mysql",
-        link:"",
+        link:"https://eventosthering.com/",
     },
   ]
 
